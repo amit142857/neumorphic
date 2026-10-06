@@ -1,0 +1,27 @@
+name: flutter_neumorphic_ui_kit
+description: Flutter Neumorphic UI Kit - A modern, high-performance, Impeller-optimized Neumorphic UI kit for Flutter with dynamic light/dark theming, inset shadows, and smooth micro-interactions.
+version: 1.0.0
+homepage: https://github.com/statusflaky/flutter_neumorphic_ui_kit
+repository: https://github.com/statusflaky/flutter_neumorphic_ui_kit
+issue_tracker: https://github.com/statusflaky/flutter_neumorphic_ui_kit/issues
+topics:
+  - neumorphism
+  - ui
+  - widgets
+  - design-system
+  - theme
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.22.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
