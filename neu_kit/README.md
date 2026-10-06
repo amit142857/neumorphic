@@ -1,28 +1,70 @@
 # Flutter Neumorphic UI Kit
 
-[![pub package](https://img.shields.io/badge/pub.dev-flutter__neumorphic__ui__kit-blue.svg)](https://pub.dev)
-[![license](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Flutter](https://img.shields.io/badge/Flutter-%3E%3D3.22.0-02569B.svg?logo=flutter)](https://flutter.dev)
-[![Impeller Ready](https://img.shields.io/badge/Impeller-60%2F120%20FPS-purple.svg)](https://flutter.dev)
+[![pub package](https://img.shields.io/badge/pub.dev-flutter__neumorphic__ui__kit-0175C2.svg?logo=dart&logoColor=white)](https://pub.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-%3E%3D3.22.0-02569B.svg?logo=flutter&logoColor=white)](https://flutter.dev)
+[![Impeller](https://img.shields.io/badge/Impeller-60%2F120%20FPS%20GPU-blueviolet.svg?logo=speedtest&logoColor=white)](https://flutter.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/licenses/MIT)
+[![Null Safety](https://img.shields.io/badge/Dart-3.3%2B%20Null--Safe-brightgreen.svg)](https://dart.dev)
 
 A modern, high-performance, Impeller-optimized Neumorphic UI kit for Flutter. Built from the ground up with zero heavy third-party dependencies, dynamic light/dark algorithmic color derivation, and GPU-accelerated inset clipping that avoids raster-thread jank.
 
 ---
 
-## ✨ Highlights & Architecture
+## ⚡ Why This Kit? (Impeller GPU Optimization)
 
-- ⚡ **Impeller 60/120 FPS Optimized**: Inset and pressed shadows are computed using `Path.combine` and hardware `MaskFilter.blur`, avoiding expensive `BackdropFilter` and GPU texture readbacks.
-- 🎨 **Dynamic HSL & Perceptual Color Derivation**: Automatically derives realistic highlight and shadow stops from any base surface color in both light and dark modes.
-- 🌓 **Seamless Light & Dark Mode**: Implements Flutter's `ThemeExtension` and `InheritedTheme` for global or scoped configuration.
-- 🕹️ **Complete Primitive & Form Kit**: `NeuContainer`, `NeuButton`, `NeuIconButton`, `NeuCard`, `NeuSwitch`, `NeuSlider`, `NeuTextField`, `NeuCheckbox`, `NeuRadio`, `NeuProgressBar`, `NeuCircularProgress`, `NeuAppBar`, and `NeuBottomNav`.
-- 📳 **Tactile Micro-Interactions**: Built-in spring physics and optional haptic feedback on interactive controls.
-- 📦 **Zero Heavy Dependencies**: Pure Flutter framework primitives.
+Legacy neumorphic packages in Flutter frequently suffer from raster-thread stutters and 15–30 FPS frame drops because they rely on `BackdropFilter` or nested image-filtering passes.
+
+**Flutter Neumorphic UI Kit** is engineered specifically for modern Flutter rendering:
+- **GPU Inset Shadows**: Recessed surfaces ([NeuShape.pressed]) are rendered via geometric difference clipping ([Path.combine]) and [MaskFilter.blur]. This uses zero raster save layers or texture readbacks, running at 60/120 FPS on Impeller.
+- **Dynamic HSL Derivation**: Automatically calculates physically accurate highlights and shadows from any surface [Color] using perceptual luminance and HSL transforms.
+- **Zero Heavy Dependencies**: Pure Flutter framework primitives.
 
 ---
 
-## 🚀 Getting Started
+## 📐 Lighting Architecture
 
-### Installation
+```
+                  ☀️ Simulated Light Source (Offset(-1.0, -1.0))
+                           \
+                            \
+        [Elevated Surface]   \         [Pressed / Recessed Surface]
+     ┌────────────────────────┐         \┌───┐                 ┌───┐/
+     │ Highlight (top-left)   │          │   │ Dark Cavity     │   │
+     │ ────────────────────── │          │   │ Inner Shadow    │   │
+     │ Dark Shadow (btm-right)│          │   └─────────────────┘   │
+     └────────────────────────┘          │ Highlight Reflection    │
+                                         └─────────────────────────┘
+```
+
+The kit supports four physical surface profiles:
+- **`NeuShape.flat`**: Elevated surface with opposing outer highlight and drop shadow.
+- **`NeuShape.convex`**: Outward curved surface gradient along the light vector.
+- **`NeuShape.concave`**: Inward curved surface gradient opposing the light vector.
+- **`NeuShape.pressed`**: Cavity recess with hardware-clipped inner shadows.
+
+---
+
+## 📦 Component Overview
+
+| Component | Description | Key Features |
+| :--- | :--- | :--- |
+| **`NeuContainer`** | Foundational building block | Flat, convex, concave, pressed, custom radii, borders, circular shapes. |
+| **`NeuButton`** | Tactile push button | Spring animation, automatic pressed state transitions, haptic clicks, disabled dimming. |
+| **`NeuIconButton`** | Circular/rounded icon button | Spring physics, tooltip, custom size and shape. |
+| **`NeuCard`** | Elevated surface card | Optional physical bevel border stroke, custom padding and curvature. |
+| **`NeuSwitch`** | Toggle switch | Inset track, elevated sliding thumb, active accent glow, custom icons. |
+| **`NeuSlider`** | Tactile slider | Inset track, elevated draggable thumb, step divisions, haptic feedback ticks. |
+| **`NeuTextField`** | Neumorphic text input | Recessed trough, focus glow border, floating label, error handling, icon slots. |
+| **`NeuCheckbox`** | Tactile checkbox | Recessed unselected state, animated convex pop-out active state. |
+| **`NeuRadio`** | Radio button | Inset circular well with animated inner convex dot indicator. |
+| **`NeuProgressBar`** | Linear progress bar | Inset track with animated convex fill (determinate & indeterminate). |
+| **`NeuCircularProgress`** | Circular progress meter | Inset circular channel with animated progress arc and custom center slot. |
+| **`NeuAppBar`** | Neumorphic app bar | Conforms to `PreferredSizeWidget`, soft bottom elevation shadow. |
+| **`NeuBottomNav`** | Bottom navigation bar | Floating or docked navigation bar with tactile recessed active states. |
+
+---
+
+## 🚀 Installation & Quickstart
 
 Add `flutter_neumorphic_ui_kit` to your `pubspec.yaml`:
 
@@ -31,25 +73,19 @@ dependencies:
   flutter_neumorphic_ui_kit: ^1.0.0
 ```
 
-Then import the library:
+Import the package:
 
 ```dart
 import 'package:flutter_neumorphic_ui_kit/flutter_neumorphic_ui_kit.dart';
 ```
 
----
-
-## 💡 Quick Start
-
-Wrap your widget tree with `NeuTheme` (or configure `NeuThemeData` inside `ThemeData.extensions`):
+Wrap your application in `NeuTheme`:
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic_ui_kit/flutter_neumorphic_ui_kit.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -89,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: theme.baseColor,
       appBar: const NeuAppBar(
-        title: Text('Flutter Neumorphic UI Kit'),
+        title: Text('Neumorphic Dashboard'),
       ),
       body: Center(
         child: NeuCard(
@@ -122,94 +158,57 @@ class _HomeScreenState extends State<HomeScreen> {
 
 ---
 
-## 🧩 Component Catalog
+## 💡 Code Recipes
 
-### 1. NeuContainer & Shapes
-The foundational building block supporting four geometric lighting surfaces:
-- `NeuShape.flat`: Outer drop shadows and highlight.
-- `NeuShape.convex`: Outward curved gradient dome.
-- `NeuShape.concave`: Inward curved gradient dish.
-- `NeuShape.pressed`: Recessed inner shadows.
-
-```dart
-NeuContainer(
-  width: 120,
-  height: 120,
-  shape: NeuShape.convex,
-  borderRadius: BorderRadius.circular(24),
-  child: const Center(child: Text('Convex')),
-)
-```
-
-### 2. NeuButton & NeuIconButton
-Tactile interactive button with spring transitions between idle and pressed states:
-
+### Tactile Interactive Button
 ```dart
 NeuButton(
   shape: NeuShape.flat,
-  onPressed: () => print('Tapped!'),
-  child: const Text('Confirm Action'),
-)
-
-NeuIconButton(
-  icon: const Icon(Icons.favorite),
-  onPressed: () {},
+  pressedShape: NeuShape.pressed,
+  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+  onPressed: () => print('Button tapped!'),
+  child: const Text('Confirm Order'),
 )
 ```
 
-### 3. Form Controls
-- **NeuSwitch**: Inset recessed track with an elevated sliding thumb.
-- **NeuSlider**: Drag gesture slider with live haptics and optional divisions.
-- **NeuTextField**: Inset text entry trough with focus border and prefix/suffix slots.
-- **NeuCheckbox**: Inset checkbox with pop-out animated checked indicator.
-- **NeuRadio**: Inset circle with pop-out inner convex dot.
-
+### Inset Text Field with Focus Glow
 ```dart
 NeuTextField(
-  labelText: 'Email Address',
-  hintText: 'user@example.com',
-  prefixIcon: Icon(Icons.email_outlined),
+  labelText: 'Full Name',
+  hintText: 'John Doe',
+  prefixIcon: const Icon(Icons.person_outline),
+  onChanged: (value) => print(value),
 )
+```
 
+### Toggle Switch with Accent Glow
+```dart
 NeuSwitch(
   value: isEnabled,
+  enableGlow: true,
+  activeColor: const Color(0xFF3B82F6),
   onChanged: (val) => setState(() => isEnabled = val),
 )
 ```
 
-### 4. Progress Indicators
-- **NeuProgressBar**: Recessed trough with animated convex fill bar (supports determinate & indeterminate modes).
-- **NeuCircularProgress**: Recessed circular base with animated progress arc and optional center widget.
-
+### Circular Progress Indicator with Center Content
 ```dart
-NeuProgressBar(value: 0.75)
-
 NeuCircularProgress(
-  value: 0.85,
-  child: Text('85%'),
-)
-```
-
-### 5. Navigation
-- **NeuAppBar**: Elevated app bar implementing `PreferredSizeWidget`.
-- **NeuBottomNav**: Elevated floating or docked bottom bar with recessed active states.
-
-```dart
-NeuBottomNav(
-  currentIndex: _selectedIndex,
-  onTap: (index) => setState(() => _selectedIndex = index),
-  items: const [
-    NeuBottomNavItem(icon: Icon(Icons.home), label: 'Home'),
-    NeuBottomNavItem(icon: Icon(Icons.settings), label: 'Settings'),
-  ],
+  value: 0.75,
+  size: 90,
+  strokeWidth: 9,
+  child: Text(
+    '75%',
+    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
+  ),
 )
 ```
 
 ---
 
-## 🎨 Theme Customization
+## 🎨 Theme Configuration
 
-`NeuThemeData` provides fine-grained control over lighting vectors, blur scaling, depth, and colors:
+`NeuThemeData` allows full control over colors, depth, and shadow vectors:
 
 ```dart
 NeuThemeData(
@@ -234,6 +233,11 @@ Run the included showcase application in `example/`:
 cd example
 flutter run
 ```
+
+Features included in the showcase:
+- **Interactive Component Gallery**: Test buttons, text fields, checkboxes, radios, sliders, and progress bars.
+- **Real-time 360° Lighting Lab**: Move the light source angle live with a 360° slider and observe how shadows dynamically recalculate across convex, concave, and inset shapes.
+- **Smart Home Dashboard**: Complete production-style dashboard containing climate dials, energy cards, and ambient music controls.
 
 ---
 
