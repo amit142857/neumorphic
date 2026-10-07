@@ -29,3 +29,8 @@
   - Live Lighting Lab, Component Gallery, and Smart Home Dashboard.
 - **Test Suite**:
   - Comprehensive unit and widget tests covering lighting mathematics, widget state transitions, and user gestures.
+
+## 1.0.1
+- Formatted all files with `dart format`.
+- Updated repository links and optimized description for pub.dev.
+
