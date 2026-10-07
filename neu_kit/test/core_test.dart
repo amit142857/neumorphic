@@ -29,7 +29,8 @@ void main() {
       final shadow = NeuColors.deriveShadowColor(darkBase, 0.70);
 
       // Dark surface highlight luminance should be higher than base
-      expect(highlight.computeLuminance(), greaterThan(darkBase.computeLuminance()));
+      expect(highlight.computeLuminance(),
+          greaterThan(darkBase.computeLuminance()));
 
       // Dark surface shadow should be deep black with opacity
       expect(shadow.r, closeTo(0.0, 0.05));
@@ -40,17 +41,21 @@ void main() {
 
     test('Gradient derivation for convex and concave shapes', () {
       const base = Color(0xFFE0E5EC);
-      final convexColors = NeuColors.deriveGradientColors(base, NeuShape.convex, 0.15);
-      final concaveColors = NeuColors.deriveGradientColors(base, NeuShape.concave, 0.15);
+      final convexColors =
+          NeuColors.deriveGradientColors(base, NeuShape.convex, 0.15);
+      final concaveColors =
+          NeuColors.deriveGradientColors(base, NeuShape.concave, 0.15);
 
       expect(convexColors.length, equals(3));
       expect(concaveColors.length, equals(3));
 
       // Convex starts brighter than base and ends darker than base
-      expect(convexColors.first.computeLuminance(), greaterThan(convexColors.last.computeLuminance()));
+      expect(convexColors.first.computeLuminance(),
+          greaterThan(convexColors.last.computeLuminance()));
 
       // Concave starts darker than base and ends brighter than base
-      expect(concaveColors.first.computeLuminance(), lessThan(concaveColors.last.computeLuminance()));
+      expect(concaveColors.first.computeLuminance(),
+          lessThan(concaveColors.last.computeLuminance()));
     });
 
     test('Light source alignment vector calculations', () {
@@ -115,7 +120,8 @@ void main() {
       expect(resolved.depth, equals(9.0));
     });
 
-    testWidgets('NeuTheme falls back to brightness when unprovided', (tester) async {
+    testWidgets('NeuTheme falls back to brightness when unprovided',
+        (tester) async {
       late NeuThemeData resolved;
 
       await tester.pumpWidget(

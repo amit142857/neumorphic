@@ -82,7 +82,8 @@ class NeuBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = NeuTheme.of(context);
     final accent = activeColor ?? theme.accentColor;
-    final unselected = inactiveColor ?? (theme.isDark ? Colors.white54 : Colors.black45);
+    final unselected =
+        inactiveColor ?? (theme.isDark ? Colors.white54 : Colors.black45);
     final effectiveRadius = borderRadius ?? BorderRadius.circular(24.0);
 
     return SafeArea(
@@ -122,7 +123,8 @@ class NeuBottomNav extends StatelessWidget {
     required Color activeColor,
     required Color inactiveColor,
   }) {
-    final effectiveIcon = isSelected ? (item.activeIcon ?? item.icon) : item.icon;
+    final effectiveIcon =
+        isSelected ? (item.activeIcon ?? item.icon) : item.icon;
 
     return Expanded(
       child: GestureDetector(
@@ -136,12 +138,14 @@ class NeuBottomNav extends StatelessWidget {
         child: Center(
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
-            padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
             child: NeuContainer(
               shape: isSelected ? NeuShape.pressed : NeuShape.flat,
               borderRadius: BorderRadius.circular(16.0),
               depth: isSelected ? 2.5 : 0.0,
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +174,8 @@ class NeuBottomNav extends StatelessWidget {
                       item.label!,
                       style: TextStyle(
                         fontSize: 10.5,
-                        fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                        fontWeight:
+                            isSelected ? FontWeight.w700 : FontWeight.w500,
                         color: isSelected ? activeColor : inactiveColor,
                       ),
                     ),

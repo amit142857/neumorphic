@@ -34,7 +34,8 @@ class NeuThemeData extends ThemeExtension<NeuThemeData> {
     double distance = 4.0,
     double curvature = 0.15,
     double blurRadiusScale = 2.0,
-    BorderRadiusGeometry borderRadius = const BorderRadius.all(Radius.circular(16.0)),
+    BorderRadiusGeometry borderRadius =
+        const BorderRadius.all(Radius.circular(16.0)),
     Color? customHighlightColor,
     Color? customShadowColor,
   }) {
@@ -63,7 +64,8 @@ class NeuThemeData extends ThemeExtension<NeuThemeData> {
     double distance = 4.0,
     double curvature = 0.18,
     double blurRadiusScale = 2.0,
-    BorderRadiusGeometry borderRadius = const BorderRadius.all(Radius.circular(16.0)),
+    BorderRadiusGeometry borderRadius =
+        const BorderRadius.all(Radius.circular(16.0)),
     Color? customHighlightColor,
     Color? customShadowColor,
   }) {
@@ -119,7 +121,8 @@ class NeuThemeData extends ThemeExtension<NeuThemeData> {
 
   /// Resolves the effective highlight color based on [baseColor] and [intensity].
   Color get highlightColor =>
-      customHighlightColor ?? NeuColors.deriveHighlightColor(baseColor, intensity);
+      customHighlightColor ??
+      NeuColors.deriveHighlightColor(baseColor, intensity);
 
   /// Resolves the effective shadow color based on [baseColor] and [intensity].
   Color get shadowColor =>
@@ -166,15 +169,21 @@ class NeuThemeData extends ThemeExtension<NeuThemeData> {
     return NeuThemeData(
       baseColor: Color.lerp(baseColor, other.baseColor, t) ?? baseColor,
       accentColor: Color.lerp(accentColor, other.accentColor, t) ?? accentColor,
-      lightSource: Offset.lerp(lightSource, other.lightSource, t) ?? lightSource,
+      lightSource:
+          Offset.lerp(lightSource, other.lightSource, t) ?? lightSource,
       intensity: lerpDouble(intensity, other.intensity, t) ?? intensity,
       depth: lerpDouble(depth, other.depth, t) ?? depth,
       distance: lerpDouble(distance, other.distance, t) ?? distance,
       curvature: lerpDouble(curvature, other.curvature, t) ?? curvature,
-      blurRadiusScale: lerpDouble(blurRadiusScale, other.blurRadiusScale, t) ?? blurRadiusScale,
-      borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t) ?? borderRadius,
-      customHighlightColor: Color.lerp(customHighlightColor, other.customHighlightColor, t),
-      customShadowColor: Color.lerp(customShadowColor, other.customShadowColor, t),
+      blurRadiusScale: lerpDouble(blurRadiusScale, other.blurRadiusScale, t) ??
+          blurRadiusScale,
+      borderRadius:
+          BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t) ??
+              borderRadius,
+      customHighlightColor:
+          Color.lerp(customHighlightColor, other.customHighlightColor, t),
+      customShadowColor:
+          Color.lerp(customShadowColor, other.customShadowColor, t),
     );
   }
 

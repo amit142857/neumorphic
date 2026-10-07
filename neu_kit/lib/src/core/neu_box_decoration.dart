@@ -153,7 +153,8 @@ class NeuBoxDecoration extends Decoration {
       return Path()..addOval(rect);
     }
     if (borderRadius != null) {
-      return Path()..addRRect(borderRadius!.resolve(textDirection).toRRect(rect));
+      return Path()
+        ..addRRect(borderRadius!.resolve(textDirection).toRRect(rect));
     }
     return Path()..addRect(rect);
   }

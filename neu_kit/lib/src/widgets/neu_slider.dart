@@ -105,7 +105,8 @@ class _NeuSliderState extends State<NeuSlider> {
       builder: (context, constraints) {
         final totalWidth = constraints.maxWidth;
         final fraction = _getFraction(widget.value);
-        final usableWidth = (totalWidth - widget.thumbSize).clamp(0.0, double.infinity);
+        final usableWidth =
+            (totalWidth - widget.thumbSize).clamp(0.0, double.infinity);
         final thumbLeft = fraction * usableWidth;
 
         return Opacity(

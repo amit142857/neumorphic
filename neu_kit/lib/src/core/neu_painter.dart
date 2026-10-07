@@ -126,8 +126,8 @@ class NeuPainter extends CustomPainter {
     final shapePath = _buildPath(rect);
 
     final effectiveBase = baseColor ?? NeuColors.defaultLightSurface;
-    final effectiveHighlight =
-        highlightColor ?? NeuColors.deriveHighlightColor(effectiveBase, intensity);
+    final effectiveHighlight = highlightColor ??
+        NeuColors.deriveHighlightColor(effectiveBase, intensity);
     final effectiveShadow =
         shadowColor ?? NeuColors.deriveShadowColor(effectiveBase, intensity);
 
@@ -219,7 +219,8 @@ class NeuPainter extends CustomPainter {
     if (customGradient != null) {
       surfacePaint.shader = customGradient!.createShader(rect);
     } else if (shape == NeuShape.convex || shape == NeuShape.concave) {
-      final gradientColors = NeuColors.deriveGradientColors(baseColor, shape, curvature);
+      final gradientColors =
+          NeuColors.deriveGradientColors(baseColor, shape, curvature);
       final gradientStops = NeuColors.deriveGradientStops(shape);
       final (beginAlign, endAlign) = NeuColors.deriveAlignment(lightSource);
 
@@ -266,7 +267,8 @@ class NeuPainter extends CustomPainter {
     final margin = blurRadius * 2.5 + effectiveDistance.abs() * 2.0 + 32.0;
     final outerRect = rect.inflate(margin);
     final outerPath = Path()..addRect(outerRect);
-    final inversePath = Path.combine(PathOperation.difference, outerPath, shapePath);
+    final inversePath =
+        Path.combine(PathOperation.difference, outerPath, shapePath);
 
     // In a recess, the wall facing the light casts a dark shadow inside.
     // Invert lightOffset so shadow falls along the light vector inside the recess.
@@ -302,7 +304,8 @@ class NeuPainter extends CustomPainter {
       border?.paint(
         canvas,
         rect,
-        borderRadius: rrect.isRect ? null : _resolveBorderRadius().resolve(textDirection),
+        borderRadius:
+            rrect.isRect ? null : _resolveBorderRadius().resolve(textDirection),
       );
     }
   }

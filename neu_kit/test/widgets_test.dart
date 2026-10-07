@@ -25,7 +25,8 @@ void main() {
 
       expect(find.text('Click Me'), findsOneWidget);
 
-      final gesture = await tester.startGesture(tester.getCenter(find.text('Click Me')));
+      final gesture =
+          await tester.startGesture(tester.getCenter(find.text('Click Me')));
       await tester.pump(const Duration(milliseconds: 50));
       // Pressed state is active while held down
       await tester.pump();
@@ -293,7 +294,8 @@ void main() {
   });
 
   group('NeuProgressBar & CircularProgress Tests', () {
-    testWidgets('NeuProgressBar renders determinate and indeterminate', (tester) async {
+    testWidgets('NeuProgressBar renders determinate and indeterminate',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -314,7 +316,8 @@ void main() {
       await tester.pump(const Duration(milliseconds: 100));
     });
 
-    testWidgets('NeuCircularProgress renders determinate and indeterminate', (tester) async {
+    testWidgets('NeuCircularProgress renders determinate and indeterminate',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -372,7 +375,8 @@ void main() {
                   onTap: (i) => setState(() => currentIndex = i),
                   items: const [
                     NeuBottomNavItem(icon: Icon(Icons.home), label: 'Home'),
-                    NeuBottomNavItem(icon: Icon(Icons.person), label: 'Profile'),
+                    NeuBottomNavItem(
+                        icon: Icon(Icons.person), label: 'Profile'),
                   ],
                 ),
                 body: const SizedBox(),

@@ -30,7 +30,8 @@ class NeuTextField extends StatefulWidget {
     this.maxLines = 1,
     this.minLines,
     this.style,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+    this.contentPadding =
+        const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
   });
 
   /// Controller for text input.
@@ -202,13 +203,11 @@ class _NeuTextFieldState extends State<NeuTextField> {
 
     final effectiveRadius = widget.borderRadius ?? theme.borderRadius;
 
-    final borderColor = hasError
-        ? Colors.redAccent
-        : (_isFocused ? accent : null);
+    final borderColor =
+        hasError ? Colors.redAccent : (_isFocused ? accent : null);
 
-    final border = borderColor != null
-        ? Border.all(color: borderColor, width: 1.5)
-        : null;
+    final border =
+        borderColor != null ? Border.all(color: borderColor, width: 1.5) : null;
 
     final textColor = isDark ? Colors.white70 : Colors.black87;
     final labelColor = hasError
@@ -258,7 +257,9 @@ class _NeuTextFieldState extends State<NeuTextField> {
                     padding: const EdgeInsets.only(right: 12.0),
                     child: IconTheme(
                       data: IconThemeData(
-                        color: _isFocused ? accent : (isDark ? Colors.white54 : Colors.black45),
+                        color: _isFocused
+                            ? accent
+                            : (isDark ? Colors.white54 : Colors.black45),
                         size: 20.0,
                       ),
                       child: widget.prefixIcon!,
@@ -298,7 +299,9 @@ class _NeuTextFieldState extends State<NeuTextField> {
                     padding: const EdgeInsets.only(left: 12.0),
                     child: IconTheme(
                       data: IconThemeData(
-                        color: _isFocused ? accent : (isDark ? Colors.white54 : Colors.black45),
+                        color: _isFocused
+                            ? accent
+                            : (isDark ? Colors.white54 : Colors.black45),
                         size: 20.0,
                       ),
                       child: widget.suffixIcon!,

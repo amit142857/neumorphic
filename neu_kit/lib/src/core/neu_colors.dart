@@ -24,7 +24,8 @@ abstract final class NeuColors {
   ///
   /// [baseColor] is the underlying surface color.
   /// [intensity] is a scaling factor between 0.0 and 1.0 (default 0.65).
-  static Color deriveHighlightColor(Color baseColor, [double intensity = 0.65]) {
+  static Color deriveHighlightColor(Color baseColor,
+      [double intensity = 0.65]) {
     final clampedIntensity = intensity.clamp(0.0, 1.0);
     final dark = isDark(baseColor);
 
@@ -32,10 +33,12 @@ abstract final class NeuColors {
       // In dark mode, pure white highlights appear harsh and destroy the surface illusion.
       // Instead, we blend a subtle white sheen over the base surface color.
       final hsl = HSLColor.fromColor(baseColor);
-      final boostedLightness = (hsl.lightness + (0.12 * clampedIntensity)).clamp(0.0, 1.0);
+      final boostedLightness =
+          (hsl.lightness + (0.12 * clampedIntensity)).clamp(0.0, 1.0);
       final boostedColor = hsl.withLightness(boostedLightness).toColor();
       final alpha = (0.15 + (0.25 * clampedIntensity)).clamp(0.0, 1.0);
-      return Color.alphaBlend(Colors.white.withValues(alpha: alpha), boostedColor);
+      return Color.alphaBlend(
+          Colors.white.withValues(alpha: alpha), boostedColor);
     } else {
       // In light mode, pure white highlight with intensity-scaled opacity.
       final alpha = (0.65 + (0.35 * clampedIntensity)).clamp(0.0, 1.0);
@@ -59,7 +62,8 @@ abstract final class NeuColors {
       // In light mode, shadow is derived by darkening the base hue to avoid muddy greys.
       final hsl = HSLColor.fromColor(baseColor);
       final darkened = hsl
-          .withLightness((hsl.lightness * (1.0 - (0.22 * clampedIntensity))).clamp(0.0, 1.0))
+          .withLightness((hsl.lightness * (1.0 - (0.22 * clampedIntensity)))
+              .clamp(0.0, 1.0))
           .withSaturation((hsl.saturation * 1.15).clamp(0.0, 1.0))
           .toColor();
       final alpha = (0.30 + (0.45 * clampedIntensity)).clamp(0.0, 1.0);

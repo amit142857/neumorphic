@@ -36,7 +36,9 @@ class NeuTheme extends InheritedTheme {
     if (data != null) return data;
 
     final brightness = Theme.of(context).brightness;
-    return brightness == Brightness.dark ? NeuThemeData.dark() : NeuThemeData.light();
+    return brightness == Brightness.dark
+        ? NeuThemeData.dark()
+        : NeuThemeData.light();
   }
 
   @override

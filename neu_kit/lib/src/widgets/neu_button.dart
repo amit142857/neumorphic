@@ -120,7 +120,8 @@ class _NeuButtonState extends State<NeuButton> {
         ? NeuShape.flat
         : (_isPressed ? widget.pressedShape : widget.shape);
 
-    final effectiveDepth = !widget.isEnabled ? 1.0 : (widget.depth ?? theme.depth);
+    final effectiveDepth =
+        !widget.isEnabled ? 1.0 : (widget.depth ?? theme.depth);
 
     Widget content = widget.child;
     if (!widget.isEnabled) {

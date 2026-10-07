@@ -41,7 +41,8 @@ class _NeuKitShowcaseAppState extends State<NeuKitShowcaseApp> {
 
     final neuTheme = NeuThemeData(
       baseColor: _baseSurface,
-      accentColor: _isDarkMode ? const Color(0xFF60A5FA) : const Color(0xFF3B82F6),
+      accentColor:
+          _isDarkMode ? const Color(0xFF60A5FA) : const Color(0xFF3B82F6),
       lightSource: lightOffset,
       depth: _globalDepth,
       distance: _globalDistance,
@@ -156,7 +157,9 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
             child: NeuIconButton(
               size: 40.0,
               icon: Icon(
-                widget.isDarkMode ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+                widget.isDarkMode
+                    ? Icons.light_mode_rounded
+                    : Icons.dark_mode_rounded,
                 size: 20,
                 color: theme.accentColor,
               ),
@@ -297,7 +300,8 @@ class _ComponentsGalleryViewState extends State<ComponentsGalleryView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Slider (${(_sliderVal * 100).toInt()}%)', style: textStyle),
+                  Text('Slider (${(_sliderVal * 100).toInt()}%)',
+                      style: textStyle),
                   const SizedBox(width: 16),
                   Expanded(
                     child: NeuSlider(
@@ -451,7 +455,8 @@ class CustomizerLabView extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.wb_sunny_rounded, size: 36, color: theme.accentColor),
+                  Icon(Icons.wb_sunny_rounded,
+                      size: 36, color: theme.accentColor),
                   const SizedBox(height: 6),
                   Text(
                     '${angle.toInt()}° Light',
@@ -471,36 +476,44 @@ class CustomizerLabView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Light Direction Angle (${angle.toInt()}°)', style: textStyle),
+              Text('Light Direction Angle (${angle.toInt()}°)',
+                  style: textStyle),
               NeuSlider(
                 min: 0,
                 max: 360,
                 value: angle,
-                onChanged: (val) => onChanged(depth, distance, intensity, val, null),
+                onChanged: (val) =>
+                    onChanged(depth, distance, intensity, val, null),
               ),
               const SizedBox(height: 14),
-              Text('Elevation Depth (${depth.toStringAsFixed(1)})', style: textStyle),
+              Text('Elevation Depth (${depth.toStringAsFixed(1)})',
+                  style: textStyle),
               NeuSlider(
                 min: 0,
                 max: 12,
                 value: depth,
-                onChanged: (val) => onChanged(val, distance, intensity, angle, null),
+                onChanged: (val) =>
+                    onChanged(val, distance, intensity, angle, null),
               ),
               const SizedBox(height: 14),
-              Text('Shadow Distance (${distance.toStringAsFixed(1)}px)', style: textStyle),
+              Text('Shadow Distance (${distance.toStringAsFixed(1)}px)',
+                  style: textStyle),
               NeuSlider(
                 min: 1,
                 max: 15,
                 value: distance,
-                onChanged: (val) => onChanged(depth, val, intensity, angle, null),
+                onChanged: (val) =>
+                    onChanged(depth, val, intensity, angle, null),
               ),
               const SizedBox(height: 14),
-              Text('Contrast Intensity (${(intensity * 100).toInt()}%)', style: textStyle),
+              Text('Contrast Intensity (${(intensity * 100).toInt()}%)',
+                  style: textStyle),
               NeuSlider(
                 min: 0.1,
                 max: 1.0,
                 value: intensity,
-                onChanged: (val) => onChanged(depth, distance, val, angle, null),
+                onChanged: (val) =>
+                    onChanged(depth, distance, val, angle, null),
               ),
             ],
           ),
@@ -623,13 +636,16 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.bolt_rounded, color: theme.accentColor, size: 26),
+                    Icon(Icons.bolt_rounded,
+                        color: theme.accentColor, size: 26),
                     const SizedBox(height: 8),
-                    const Text('Energy', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                    const Text('Energy',
+                        style: TextStyle(fontSize: 12, color: Colors.grey)),
                     const SizedBox(height: 4),
                     const Text(
                       '3.8 kWh',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
@@ -642,13 +658,16 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.water_drop_rounded, color: Colors.cyanAccent.shade700, size: 26),
+                    Icon(Icons.water_drop_rounded,
+                        color: Colors.cyanAccent.shade700, size: 26),
                     const SizedBox(height: 8),
-                    const Text('Humidity', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                    const Text('Humidity',
+                        style: TextStyle(fontSize: 12, color: Colors.grey)),
                     const SizedBox(height: 4),
                     const Text(
                       '48%',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
@@ -673,7 +692,8 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                       SizedBox(width: 10),
                       Text(
                         'Climate Control',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
@@ -698,7 +718,8 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const Text('Cooling', style: TextStyle(fontSize: 10, color: Colors.grey)),
+                    const Text('Cooling',
+                        style: TextStyle(fontSize: 10, color: Colors.grey)),
                   ],
                 ),
               ),
@@ -725,7 +746,8 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                     height: 52,
                     shape: NeuShape.convex,
                     borderRadius: BorderRadius.circular(12),
-                    child: Icon(Icons.music_note_rounded, color: theme.accentColor),
+                    child: Icon(Icons.music_note_rounded,
+                        color: theme.accentColor),
                   ),
                   const SizedBox(width: 14),
                   const Expanded(
@@ -734,7 +756,8 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                       children: [
                         Text(
                           'Ambient Horizons',
-                          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 14),
                         ),
                         Text(
                           'Neumorphic Waves',
@@ -746,11 +769,14 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                   NeuIconButton(
                     size: 38,
                     icon: Icon(
-                      _livingRoomLight ? Icons.lightbulb_rounded : Icons.lightbulb_outline_rounded,
+                      _livingRoomLight
+                          ? Icons.lightbulb_rounded
+                          : Icons.lightbulb_outline_rounded,
                       color: _livingRoomLight ? Colors.amber : Colors.grey,
                       size: 20,
                     ),
-                    onPressed: () => setState(() => _livingRoomLight = !_livingRoomLight),
+                    onPressed: () =>
+                        setState(() => _livingRoomLight = !_livingRoomLight),
                   ),
                 ],
               ),
@@ -770,7 +796,9 @@ class _DashboardSampleViewState extends State<DashboardSampleView> {
                     size: 54,
                     shape: NeuShape.convex,
                     icon: Icon(
-                      _isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                      _isPlaying
+                          ? Icons.pause_rounded
+                          : Icons.play_arrow_rounded,
                       color: theme.accentColor,
                       size: 28,
                     ),

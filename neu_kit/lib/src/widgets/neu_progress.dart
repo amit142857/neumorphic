@@ -39,7 +39,8 @@ class NeuProgressBar extends StatefulWidget {
   State<NeuProgressBar> createState() => _NeuProgressBarState();
 }
 
-class _NeuProgressBarState extends State<NeuProgressBar> with SingleTickerProviderStateMixin {
+class _NeuProgressBarState extends State<NeuProgressBar>
+    with SingleTickerProviderStateMixin {
   late AnimationController _indeterminateController;
 
   @override
@@ -74,7 +75,8 @@ class _NeuProgressBarState extends State<NeuProgressBar> with SingleTickerProvid
   Widget build(BuildContext context) {
     final theme = NeuTheme.of(context);
     final accent = widget.progressColor ?? theme.accentColor;
-    final trackRadius = widget.borderRadius ?? BorderRadius.circular(widget.height / 2.0);
+    final trackRadius =
+        widget.borderRadius ?? BorderRadius.circular(widget.height / 2.0);
 
     return NeuContainer(
       height: widget.height,
@@ -216,7 +218,9 @@ class _NeuCircularProgressState extends State<NeuCircularProgress>
     final theme = NeuTheme.of(context);
     final accent = widget.progressColor ?? theme.accentColor;
     final baseTrack = widget.trackColor ??
-        (theme.isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06));
+        (theme.isDark
+            ? Colors.white.withValues(alpha: 0.08)
+            : Colors.black.withValues(alpha: 0.06));
 
     Widget progressArc;
 
